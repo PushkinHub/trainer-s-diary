@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Training diary{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block stylesheets %}
+        {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+        {{ encore_entry_link_tags('app') }}
+
+        <!-- Renders a link tag (if your module requires any CSS)
+             <link rel="stylesheet" href="/build/app.css"> -->
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+
+                <div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">Ward</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ path('app_ward_create') }}">Create</a>
+                                <a class="dropdown-item" href="{{ path('app_ward_list') }}">List</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="row flex-nowrap justify-content-between align-items-center">
+                        <div class="col-6 pt-1">
+                            <div id="search_ward">
+                                <input id="search" class="form-control" type="text" placeholder="Search ward" autocomplete="off" aria-label="Search">
+                            </div>
+                        </div>
+                        {% if app.user == false %}
+                            <div class="col-3 pt-1">
+                                <a class="btn btn-md btn-outline-secondary" href="{{ path('app_login') }}">Sign in</a>
+                            </div>
+                            <div class="col-3 pt-1">
+                                <a class="btn btn-md btn-outline-secondary" href="{{ path('app_register') }}">Sign up</a>
+                            </div>
+                        {% else %}
+                            <div class="col-4 pt-3" style="color: white">
+                                <p>{{ app.user.email }}</p>
+                            </div>
+                            <div class="col-3 pt-1">
+                                <a class="btn btn-md btn-outline-secondary" href="{{ path('app_logout') }}">Sign out</a>
+                            </div>
+
+                            &nbsp
+                        {% endif %}
+                    </div>
+
+                    {#                <a class="btn btn-sm  my-md-0 btn-outline-secondary" href="#">Sign in</a> <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>#}
+                    {#                <span class="navbar-nav" style="text-align: right;">#}
+                    {#            {% if app.user == false %}#}
+                    {#                <a href="{{ path('app_login') }}">Authentication</a>#}
+                    {#                &nbsp#}
+                    {#                <a href="{{ path('app_register') }}">Registration</a>#}
+                    {#            {% else %}#}
+                    {#                <p>Username: {{ app.user.username }}</p>#}
+                    {#                &nbsp#}
+                    {#                <a href="{{ path('app_logout') }}">Exit</a>#}
+                    {#            {% endif %}#}
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="jumbotron">
+                {% block body %}
+                    <h1 class="h1 mb-3 font-weight-normal">{% block content_title %}{% endblock %}</h1>
+                    {% block content %}{% endblock %}
+                {% endblock %}
+        </div>
+    </main><!-- /.container -->
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+
+    <!-- Renders app.js & a webpack runtime.js file
+        <script src="/build/runtime.js"></script>
+        <script src="/build/app.js"></script> -->
+{% endblock %}
+</body>
+</html>
