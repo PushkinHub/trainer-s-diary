@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content_title %}Register{% endblock %}
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.middleName) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.agreeTerms) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    {{ form_end(form) }}
+{% endblock %}
