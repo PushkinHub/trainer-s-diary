@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ward list{% endblock %}
+{% block content_title %}Ward list{% endblock %}
+{% block content %}
+        <table class="table table-hover table-dark">
+            <tr>
+                <th>Email</th>
+                <th>phoneNumber</th>
+                <th>FirstName</th>
+                <th>MiddleName</th>
+                <th>LastName</th>
+            </tr>
+            {% for ward in wards %}
+                <tr>
+                    <td>{{ ward.email }}</td>
+                    <td>{{ ward.phoneNumber }}</td>
+                    <td>{{ ward.firstName }}</td>
+                    <td>{{ ward.middleName }}</td>
+                    <td>{{ ward.lastName }}</td>
+                    <td><a href="{{ path('app_training_create', {ward: ward.id}) }}">Training create</a></td>
+                    <td><a href="{{ path('app_training_list', {ward: ward.id}) }}">Training list</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}
+

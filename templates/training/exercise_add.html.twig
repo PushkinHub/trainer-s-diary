@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exercise create{% endblock %}
+{% block content_title %}Exercise create{% endblock %}
+{% block content %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    <form>
+        {{ form_start(form) }}
+        {# render the task's only field: description #}
+        {{ form_row(form.description) }}
+        {{ form_row(form.exerciseType) }}
+
+        <h3>Parameters</h3>
+        <ul class="parameters" data-prototype="{{ form_widget(form.exerciseParameters.vars.prototype)|e('html_attr') }}">
+            {# iterate over each existing parameter and render its only field: name #}
+            {% for parameter in form.exerciseParameters %}
+                <li>{{ form_row(parameter.value) }}</li>
+            {% endfor %}
+        </ul>
+        {{ form_end(form) }}
+    </form>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script>
+        var $collectionHolder;
+
+        // setup an "add a parameter" link
+        var $addParameterButton = $('<button type="button" class="add_parameter_link">Add a parameter</button>');
+        var $newLinkLi = $('<li></li>').append($addParameterButton);
+
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of parameters
+            $collectionHolder = $('ul.parameters');
+
+            // add the "add a parameter" anchor and li to the parameters ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addParameterButton.on('click', function(e) {
+                // add a new parameter form (see next code block)
+                addParameterForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+
+        function addParameterForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your parameters field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            console.log(index);
+            newForm = newForm.replace(/__name__/g, index);
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a parameter" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+    </script>
+
+{% endblock %}

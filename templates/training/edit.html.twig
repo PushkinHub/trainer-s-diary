@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="row" id="training_edit" data-training-id="{{ training.id }}">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="inputNote"><i class="fas fa-quote-left"></i> Заметка <i class="fas fa-quote-right"></i></label>
+            <textarea rows="5" cols="50" type="text" class="form-control" id="inputNote" placeholder="#"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputRepeatsExpect">Ожидаемые повторения</label>
+            <input type="number" min="0" class="form-control" id="inputRepeatsExpect"
+                   value="{{ training.repeatsExpect }}" placeholder="#">
+        </div>
+        <div class="form-group">
+            <label for="inputRepeatsActual">Всего выполненных повторений</label>
+            <input type="number" min="0" class="form-control" id="inputRepeatsActual"
+                   value="{{ training.repeatsActual }}" placeholder="#">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary">Сохранить тренировку</button>
+        </div>
+    </div>
+    <div class="col-7"><h5>Упражнения</h5>
+        <div id="exercises"></div>
+        <button class="exercise-add-button">Добавить упражнение</button>
+{% endblock %}
