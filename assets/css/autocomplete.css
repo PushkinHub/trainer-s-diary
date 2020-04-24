@@ -1,0 +1,20 @@
+.autocomplete-table {
+    margin-top: -5px;
+    margin-left: 1px;
+    width: 221px;
+    background-color: white;
+    color: dimgrey;
+    line-height: 2;
+    padding-left: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 1;
+}
+
+.autocomplete-table td {
+    padding: 5px 9px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
