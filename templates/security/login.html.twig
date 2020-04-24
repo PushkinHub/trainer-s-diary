@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block content_title %}Sign in{% endblock %}
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_row(form._username) }}
+    {{ form_row(form._password) }}
+    <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -5692,3 +5692,4 @@
 172.19.0.1 - - [24/Apr/2020:12:00:53 +0000] "GET /api/trainings/393/exercises HTTP/1.1" 200 118 "http://localhost/training/393/edit" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 172.19.0.1 - - [24/Apr/2020:12:00:53 +0000] "GET /_wdt/d47288 HTTP/1.1" 200 4259 "http://localhost/training/393/edit" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
 172.19.0.1 - - [24/Apr/2020:12:00:53 +0000] "GET /build/fonts/fa-regular-400.c20b5b73.woff2 HTTP/1.1" 200 13584 "http://localhost/build/vendors~app.css" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36"
+172.19.0.1 - - [24/Apr/2020:13:18:32 +0000] "\x16\x03\x01\x02\x00\x01\x00\x01\xFC\x03\x03\xDF\x1D\xE2\xF7gq\xEE8\xF2" 400 150 "-" "-"
